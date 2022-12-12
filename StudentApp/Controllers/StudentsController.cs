@@ -43,5 +43,28 @@ namespace StudentApp.Controllers
 
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            //NOTE: Merret vetem nje student nga databaza me id
+            var student = new Student()
+            {
+                Id = 1,
+                FirstName = "Alijandro",
+                LastName = "Firanj",
+                GraduationYear = 2023,
+                IsActive = true,
+                DateOfBirth = DateTime.Now.AddYears(-20),
+                DateCreated = DateTime.Now,
+                DateUpdated = DateTime.Now
+            };
+
+            return Ok(student);
+        }
+
+
+
+
     }
+
 }
