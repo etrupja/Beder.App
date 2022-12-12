@@ -68,11 +68,32 @@ namespace StudentApp.Controllers
             };
 
             //Objekti i krijuar shtohet ne databaze me Entity Framework
-            //
-
             return Created("", school);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdateSchool([FromBody]SchoolVM schoolVM, int id)
+        {
+            //Merret objekti School nga database duket perdorur Id si parameter
+            var school = new School()
+            {
+                Id = 1,
+                Name = "Univesiteti Beder",
+                Address = "Address 1",
+                YearEstablished = 2000
+            };
+
+
+            //Modifikohet objekti School i marre nga databaza duket perdorur te dhenat nga FromBody
+            school.Name = schoolVM.Name;
+            school.Address = schoolVM.Address;
+            school.YearEstablished = schoolVM.YearEstablished;
+            school.DateUpdated = DateTime.UtcNow;
+
+            //Perditesohet objekti shkolle ne database me Entity Framework
+
+            return Ok($"School with id = {id} was updated");
+        }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
