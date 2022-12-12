@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentApp.Data.Models;
+using StudentApp.Data.VM;
 
 namespace StudentApp.Controllers
 {
@@ -48,7 +49,31 @@ namespace StudentApp.Controllers
 
             return Ok(school);
         }
-        
+
+
+        [HttpPost]
+        public IActionResult AddSchool([FromBody] SchoolVM schoolVM)
+        {
+            //Krijohet objekti shkolle
+            var school = new School()
+            {
+                //Id = Gjenerohet nga database
+                Name = schoolVM.Name,
+                Address = schoolVM.Address,
+                YearEstablished = schoolVM.YearEstablished,
+
+                //Mund te jene edhe ne nivel database
+                DateCreated = DateTime.UtcNow,
+                DateUpdated = null
+            };
+
+            //Objekti i krijuar shtohet ne databaze me Entity Framework
+            //
+
+            return Created("", school);
+        }
+
+
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {

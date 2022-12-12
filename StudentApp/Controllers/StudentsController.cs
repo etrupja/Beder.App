@@ -62,6 +62,14 @@ namespace StudentApp.Controllers
             return Ok(student);
         }
 
+        
+        [HttpDelete("{id}")]
+        public IActionResult DeleteById(int id)
+        {
+            //NOTE: Kalohet Id si parameter dhe fshihet Student nga databaza
+
+            return Ok($"Student with id {id} deleted");
+        }
 
 
 
